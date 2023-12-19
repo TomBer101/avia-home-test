@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 // TODO: fix icons
 
-const AddCustomerForm = ({ onAddCustomer, onClose, plans }) => {
+const AddCustomerForm = ({ onAddCustomer, plans, onClose }) => {
     const [newCustomer, setNewCustomer] = useState({
         firstName: "",
         lastName: "",

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import TableComponent from '../components/TablePage/TableComponent'
 import TableWithPagination from "../components/TablePage/TableComponent";
 import SearchBar from "../components/TablePage/SearchBar";
 import AddCustomerForm from "../components/TablePage/AddCustomerForm";
-
+import HorizontalAccordion from "../wrappers/HorizontalAccordion";
 
 
 const TablePage = () => {
@@ -31,8 +30,15 @@ const TablePage = () => {
         <div className="container">
             <h1>Table Page</h1>
             <SearchBar />
+            <HorizontalAccordion>
+                {(toggleForm) => (<AddCustomerForm 
+                        onClose={toggleForm} 
+                        plans={plans} 
+                        onAddCustomer={handleAddCustomer} 
+                    />)}
+            </HorizontalAccordion>
             <TableWithPagination data={customers} />
-            <div>
+            {/* <div>
                 <button className="btn btn-primary" onClick={handleToggleForm}>
                     Toggle Form
                 </button>
@@ -42,7 +48,7 @@ const TablePage = () => {
                     plans={plans} 
                     onAddCustomer={handleAddCustomer} 
                 />}
-            </div>
+            </div> */}
 
         </div>
 
