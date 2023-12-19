@@ -1,16 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 
-const TableWithPagination = ({ data }) => {
+const TableWithPagination = ({ data, searchTerm }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [filteredPlan, setFilteredPlan] = useState('');
+    
     const plans = ["All Plans", "care", "light", "connect", "home", "navigate"]
-
+    const [filteredPlan, setFilteredPlan] = useState(plans[0]);
 
     const itemsPerPage = 5;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-    const filteredCustomers = filteredPlan != plans[0] ? data.filter((customer) => customer.plan === filteredPlan) : data;
+
+    const filterByPlan = (customer) => {
+        if (filteredPlan === plans[0]) return true;
+        return customer.plan === filteredPlan;
+    }
+
+    const filterBySearchTerm = (customer, normalizedSearchTerm) => {
+        if (normalizedSearchTerm === '') return true;
+        const fullName = `${customer.firstname} ${customer.lastname}`.toLowerCase();
+        return fullName.includes(normalizedSearchTerm) || customer.phone.replace('-', '').includes(normalizedSearchTerm);
+    };
+
+    const filteredCustomers = useMemo(() => {
+        return data
+                .filter(customer => filterByPlan(customer))
+                .filter(customer => filterBySearchTerm(customer, searchTerm));
+    }, [data.length, filterByPlan, searchTerm]);
+
+
+
     const currentItems = filteredCustomers.slice(indexOfFirstItem, indexOfLastItem);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -20,10 +39,8 @@ const TableWithPagination = ({ data }) => {
         setFilteredPlan(event.target.value);
     };
 
-
-
     return (
-        <div>
+        <div className='container-flex'>
 
             <div style={{height : '250px'}} className='mb-3'>
                 <table className="table" >
@@ -70,7 +87,7 @@ const TableWithPagination = ({ data }) => {
                     </ul>
                 </nav>
             </div>
-            </div>
+        </div>
     );
 };
 

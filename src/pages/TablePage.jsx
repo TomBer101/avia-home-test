@@ -9,6 +9,7 @@ const TablePage = () => {
 
     const [customers, setCustomers] = useState([]);
     const [isFormVisible, setIsFormVisible] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const plans = ["All Plans", "care", "light", "connect", "home", "navigate"]
 
     useEffect(() => {
@@ -18,37 +19,27 @@ const TablePage = () => {
             .catch((error) => console.error('Error fetching data: ', error));
     }, []);
 
-    const handleToggleForm = () => {
-        setIsFormVisible(!isFormVisible);
-    };
-
     const handleAddCustomer = (newCustomer) => {
         setCustomers([...customers, newCustomer]);
     }
 
+
+
     return (
         <div className="container">
             <h1>Table Page</h1>
-            <SearchBar />
-            <HorizontalAccordion>
-                {(toggleForm) => (<AddCustomerForm 
-                        onClose={toggleForm} 
-                        plans={plans} 
-                        onAddCustomer={handleAddCustomer} 
+            <SearchBar onSearch={setSearchTerm} />
+            <div style={{ display: 'flex', flexDirection: 'row', alignSelf: 'center', justifyContent: 'center', justifyItems: 'center' }}>
+                <HorizontalAccordion>
+                    {(toggleForm) => (
+                        <AddCustomerForm
+                        onClose={toggleForm}
+                        plans={plans}
+                        onAddCustomer={handleAddCustomer}
                     />)}
-            </HorizontalAccordion>
-            <TableWithPagination data={customers} />
-            {/* <div>
-                <button className="btn btn-primary" onClick={handleToggleForm}>
-                    Toggle Form
-                </button>
-
-                {isFormVisible && <AddCustomerForm 
-                    onClose={handleToggleForm} 
-                    plans={plans} 
-                    onAddCustomer={handleAddCustomer} 
-                />}
-            </div> */}
+                </HorizontalAccordion>
+                <TableWithPagination data={customers} searchTerm={searchTerm} />
+            </div>
 
         </div>
 

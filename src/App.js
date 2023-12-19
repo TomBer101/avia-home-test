@@ -7,7 +7,7 @@ import {TablePage} from './pages';
 function App() {
   return(
     <div className="App">
-    <TablePage />
+      <TablePage />
     </div>
   );
 };

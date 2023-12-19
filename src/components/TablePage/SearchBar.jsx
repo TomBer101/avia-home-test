@@ -4,13 +4,26 @@ const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState("");
 
     const handleSearch = () => {
-        // Add validation logic
-        onSearch(searchTerm);
+
+        const isAllDigits = /^[\d-]+$/.test(searchTerm);
+        const isAllLetters = /^[a-zA-Z\u05D0-\u05EA\s]+$/.test(searchTerm);
+
+        if (!isAllDigits && !isAllLetters) {
+            alert("Please enter a phone number, or a name only!");
+        } else {
+            let term;
+            if (isAllDigits) { term = searchTerm.replace('-', '');}
+            if (isAllLetters) { term = searchTerm.toLowerCase();}
+            onSearch(term);
+        }
+
     };
 
     const handleChange = (event) => {
-        // Add validation logic
         setSearchTerm(event.target.value);
+        if (event.target.value === ''){
+            onSearch('');
+        }
     } 
 
     return (
