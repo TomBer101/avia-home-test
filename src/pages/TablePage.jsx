@@ -75,16 +75,6 @@ const TablePage = () => {
             </div>
 
 
-            <div className="page">
-                <Title></Title>
-                <div className="item">
-                <SearchBar/>
-                </div>
-                <HorizontalAccordion/>
-            </div>
-
-
-
 
 
         </div>
