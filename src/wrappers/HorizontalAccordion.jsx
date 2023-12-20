@@ -12,9 +12,9 @@ const HorizontalAccordion = ({ children}) => {
 
 return (
 
-    <div className={`sidebar ${isVisible ? 'expanded' : ''}`}>
-        <div className="menu-item" onClick={handleToggleForm}>
-            Toggle Form
+    <div className={`sidebar ${isVisible ? 'expanded' : ''}`} >
+        <div className="menu-item" onClick={handleToggleForm} onBlur={() => setIsVisible(false)}>
+            {isVisible? 'Cancel' : 'Add Client'}
         </div>
         {isVisible && children(handleToggleForm)}
     </div>

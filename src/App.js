@@ -6,7 +6,7 @@ import {TablePage} from './pages';
 
 function App() {
   return(
-    <div className="App">
+    <div className="App container-fluid">
       <TablePage />
     </div>
   );

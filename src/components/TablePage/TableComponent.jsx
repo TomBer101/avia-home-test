@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 
 const TableWithPagination = ({ data, searchTerm }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     const plans = ["All Plans", "care", "light", "connect", "home", "navigate"]
     const [filteredPlan, setFilteredPlan] = useState(plans[0]);
 
@@ -24,8 +24,8 @@ const TableWithPagination = ({ data, searchTerm }) => {
 
     const filteredCustomers = useMemo(() => {
         return data
-                .filter(customer => filterByPlan(customer))
-                .filter(customer => filterBySearchTerm(customer, searchTerm));
+            .filter(customer => filterByPlan(customer))
+            .filter(customer => filterBySearchTerm(customer, searchTerm));
     }, [data.length, filterByPlan, searchTerm]);
 
 
@@ -40,40 +40,38 @@ const TableWithPagination = ({ data, searchTerm }) => {
     };
 
     return (
-        <div className='container-flex'>
+        <div className='table-container' >
 
-            <div style={{height : '250px'}} className='mb-3'>
-                <table className="table" >
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>
-                                <select id="planFilter" value={filteredPlan} onChange={handlePlanChange} style={{ fontWeight: "bold" }}>
-                                    {plans.map((plan, index) => {
-                                        return (<option key={index} value={plan}  >{plan}</option>);
-                                    })}
+            <table className="table" >
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>
+                            <select id="planFilter" value={filteredPlan} onChange={handlePlanChange} style={{ fontWeight: "bold" }}>
+                                {plans.map((plan, index) => {
+                                    return (<option key={index} value={plan}  >{plan}</option>);
+                                })}
 
-                                </select></th>
+                            </select></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentItems.map((item, index) => (
+                        <tr key={index} style={{ height: '42px' }}>
+                            <td>{item.firstname}</td>
+                            <td>{item.lastname}</td>
+                            <td>{item.phone}</td>
+                            <td>{item.email}</td>
+                            <td>{item.plan}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {currentItems.map((item, index) => (
-                            <tr key={index} style={{ height: '42px' }}>
-                                <td>{item.firstname}</td>
-                                <td>{item.lastname}</td>
-                                <td>{item.phone}</td>
-                                <td>{item.email}</td>
-                                <td>{item.plan}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                    ))}
+                </tbody>
+            </table>
 
 
-            </div>
             <div>
                 <nav>
                     <ul className="pagination">
