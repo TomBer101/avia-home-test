@@ -1,0 +1,14 @@
+.sidebar {
+    width: 80px; /* Set your desired width */
+    background-color: #333; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    transition: width 0.3s ease; /* Add a smooth transition effect */
+    z-index: 0;
+    margin-right: 3px;
+  }
+  
+  .sidebar.expanded {
+    width: 300px; /* Set the expanded width */
+    z-index: 1;
+  }
+  
