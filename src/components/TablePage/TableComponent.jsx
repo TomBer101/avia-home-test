@@ -1,9 +1,21 @@
 import React, { useState, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faFileArrowDown} from '@fortawesome/free-solid-svg-icons'
+import { CSVLink } from 'react-csv';
 
-const TableWithPagination = ({ data, searchTerm }) => {
+import '../../styles/components/Table.css'
+
+const TableWithPagination = ({ customers, searchTerm }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const plans = ["All Plans", "care", "light", "connect", "home", "navigate"]
+    const headers = [
+        { label: "First Name", key: "firstname" },
+        { label: "Last Name", key: "lastname" },
+        { label: "Email", key: "email" },
+        {label: "Phone", key: "phone"},
+        {label: "Plan", key: "plan"}
+      ];
     const [filteredPlan, setFilteredPlan] = useState(plans[0]);
 
     const itemsPerPage = 5;
@@ -23,10 +35,10 @@ const TableWithPagination = ({ data, searchTerm }) => {
     };
 
     const filteredCustomers = useMemo(() => {
-        return data
+        return customers
             .filter(customer => filterByPlan(customer))
             .filter(customer => filterBySearchTerm(customer, searchTerm));
-    }, [data.length, filterByPlan, searchTerm]);
+    }, [customers.length, filterByPlan, searchTerm]);
 
 
 
@@ -40,7 +52,7 @@ const TableWithPagination = ({ data, searchTerm }) => {
     };
 
     return (
-        <div className='table-container' >
+        <div className='container' >
 
             <table className="table" >
                 <thead>
@@ -72,7 +84,7 @@ const TableWithPagination = ({ data, searchTerm }) => {
             </table>
 
 
-            <div>
+            <div className='button-container'>
                 <nav>
                     <ul className="pagination">
                         {Array.from({ length: Math.ceil(filteredCustomers.length / itemsPerPage) }).map((_, index) => (
@@ -84,6 +96,17 @@ const TableWithPagination = ({ data, searchTerm }) => {
                         ))}
                     </ul>
                 </nav>
+                <CSVLink
+                    data={customers}
+                    headers={headers}
+                    filename="customers_data.csv"
+                    className="btn btn-primary"
+                >
+                    <span>
+                        Download as CSV 
+                    </span>
+                    <FontAwesomeIcon icon={faFileArrowDown} />
+                </CSVLink>
             </div>
         </div>
     );

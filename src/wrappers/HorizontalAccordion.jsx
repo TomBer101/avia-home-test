@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../styles/wrappers/HorizontalAccordion.css'
 
 
-const HorizontalAccordion = ({ children}) => {
+const HorizontalAccordion = ({openedTitle, closedTitle, children}) => {
     const [isVisible, setIsVisible] = useState(false);
 
 
@@ -12,11 +12,11 @@ const HorizontalAccordion = ({ children}) => {
 
 return (
 
-    <div className={`sidebar ${isVisible ? 'expanded' : ''}`} >
-        <div className="menu-item" onClick={handleToggleForm} onBlur={() => setIsVisible(false)}>
-            {isVisible? 'Cancel' : 'Add Client'}
+    <div onClick={handleToggleForm} className={`sidebar ${isVisible ? 'expanded' : ''}`} >
+        <div className="menu-item"  >
+            {isVisible? openedTitle : closedTitle}
         </div>
-        {isVisible && children(handleToggleForm)}
+        {isVisible && children}
     </div>
 
 );

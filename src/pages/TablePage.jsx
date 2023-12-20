@@ -13,14 +13,6 @@ const TablePage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const plans = [ "care", "light", "connect", "home", "navigate"]
 
-    const headers = [
-        { label: "First Name", key: "firstname" },
-        { label: "Last Name", key: "lastname" },
-        { label: "Email", key: "email" },
-        {label: "Phone", key: "phone"},
-        {label: "Plan", key: "plan"}
-      ];
-
     useEffect(() => {
         fetch('customers.json')
             .then((response) => response.json())
@@ -41,6 +33,14 @@ const TablePage = () => {
                     <h1 className="page-title">Customers</h1>
                 </div>
             </div>
+            <div className="row table-container justify-content-center">
+                <div className="col-md-10">
+                    <TableWithPagination customers={customers} searchTerm={searchTerm} />
+                </div>
+            </div>
+            <HorizontalAccordion closedTitle={'Add Customer'} openedTitle={"Cancel"}>
+                I am a Child
+            </HorizontalAccordion> 
         </div>
 
     )
