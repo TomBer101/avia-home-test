@@ -73,6 +73,20 @@ const TablePage = () => {
                     </CSVLink>
                 </div>
             </div>
+
+
+            <div className="page">
+                <Title></Title>
+                <div className="item">
+                <SearchBar/>
+                </div>
+                <HorizontalAccordion/>
+            </div>
+
+
+
+
+
         </div>
 
     )
@@ -80,4 +94,8 @@ const TablePage = () => {
 
 }
 export default TablePage;
+
+
+
+
 
