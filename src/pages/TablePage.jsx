@@ -4,7 +4,7 @@ import TableWithPagination from "../components/TablePage/TableComponent";
 import SearchBar from "../components/TablePage/SearchBar";
 import AddCustomerForm from "../components/TablePage/AddCustomerForm";
 import HorizontalAccordion from "../wrappers/HorizontalAccordion";
-
+import "../styles/components/TablePage.css";
 
 const TablePage = () => {
 
@@ -35,58 +35,12 @@ const TablePage = () => {
 
 
     return (
-        <div className="container"  >
+        <div className="container-fluid table-page" >
             <div className="row">
-                <div className="col-md-12 text-center">
-                    <h1 >Customers</h1>
+                <div className="col page-title-container">
+                    <h1 className="page-title">Customers</h1>
                 </div>
             </div>
-            <div className="row justify-content-center">
-                <div className="col-md-4 col-sm-7">
-                    <SearchBar onSearch={setSearchTerm} />
-                </div>
-            </div>
-            <div className="row ">
-                <div className="col-md-2 col-sm-12">
-                        <HorizontalAccordion>
-                            {(toggleForm) => (
-                                <AddCustomerForm
-                                    onClose={toggleForm}
-                                    plans={plans}
-                                    onAddCustomer={handleAddCustomer}
-                                />)}
-                        </HorizontalAccordion>
-                </div>
-                <div className="col-md-8 col-sm-12">
-                    <TableWithPagination data={customers} searchTerm={searchTerm} />
-                </div>
-            </div>
-            <div className="row justify-content-center">
-                <div className="col-md-8 col-sm-12 text-center">
-                    <CSVLink
-                        data={customers}
-                        headers={headers}
-                        filename="customer_data.csv"
-                        className="btn btn-primary"
-                    >
-                        Download CSV
-                    </CSVLink>
-                </div>
-            </div>
-
-
-            <div className="page">
-                <Title></Title>
-                <div className="item">
-                <SearchBar/>
-                </div>
-                <HorizontalAccordion/>
-            </div>
-
-
-
-
-
         </div>
 
     )

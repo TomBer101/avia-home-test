@@ -1,0 +1,16 @@
+.table-page {
+    height: 100%;
+
+    padding-right: 0;
+    padding-left: 0;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.page-title-container {
+    text-align: center;
+}
