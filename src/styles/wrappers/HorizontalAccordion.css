@@ -5,10 +5,10 @@
   width: 108px;
   top: 0;
   left: 0;
-  background-color: #313866; /* Set your desired background color */
+  background-color: #313866; 
   overflow-x: hidden;
-  color: #fff; /* Set your desired text color */
-  transition: width 0.5s ease; /* Add a smooth transition effect */
+  color: #fff;
+  transition: width 0.5s ease; 
   z-index: 50;
   padding-top: 25px;
   flex-direction: column;
@@ -59,17 +59,16 @@ padding: 3% 8%;}
 }
   
 .sidebar.expanded {
-  width: 320px; /* Set the expanded width */
+  width: 320px; 
   z-index: 50;
 }
 
 .content *{
-  /* Apply transition for properties you want to animate within children */
-  transition: opacity 0.5s ease; /* Example: transition opacity with the same duration */
+  
+  transition: opacity 0.5s ease;
 }
 
 .content {
-  /* Apply transition for properties you want to animate within children */
-  transition: opacity 0.5s ease; /* Example: transition opacity with the same duration */
+  transition: opacity 0.5s ease; 
 }
   

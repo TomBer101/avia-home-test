@@ -24,7 +24,7 @@ span {
 }
 
 th {
-    width: 100px; /* Set your desired fixed width for each column */
+    width: 100px; 
   }
 
 @media (max-width: 576px) {
