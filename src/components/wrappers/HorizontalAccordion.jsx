@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styles/wrappers/HorizontalAccordion.css'
+import '../../styles/wrappers/HorizontalAccordion.css'
 
 
 const HorizontalAccordion = ({ openedTitle, closedTitle, children }) => {
@@ -12,7 +12,7 @@ const HorizontalAccordion = ({ openedTitle, closedTitle, children }) => {
 
     return (
 
-        <div  className={`sidebar ${isVisible ? 'expanded' : ''}`} >
+        <div  className={`sidebar ${isVisible ? 'expanded' : ''}`} style={{overflowY :` ${isVisible? 'auto' : 'hidden'}`}}>
             
             <div className="menu-item"  >
                 <div className="btn btn-sm btn-secondary btn-cancel" onClick={handleToggleForm}>{isVisible ? openedTitle : closedTitle}</div>

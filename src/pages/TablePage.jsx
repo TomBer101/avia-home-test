@@ -3,7 +3,7 @@ import { CSVLink } from 'react-csv';
 import TableWithPagination from "../components/TablePage/TableComponent";
 import SearchBar from "../components/TablePage/SearchBar";
 import AddCustomerForm from "../components/TablePage/AddCustomerForm";
-import HorizontalAccordion from "../wrappers/HorizontalAccordion";
+import HorizontalAccordion from "../components/wrappers/HorizontalAccordion";
 import "../styles/components/TablePage.css";
 
 const TablePage = () => {
@@ -39,7 +39,7 @@ const TablePage = () => {
                 </div>
             </div>
             <div className="row mt-3">
-                <div className="col-md-8  offset-md-2 offset-sm-2 col-sm-10  ">
+                <div className="col-md-8  offset-sm-2 col-sm-10  " style={{width: '70%'}}>
                     <TableWithPagination customers={customers} searchTerm={searchTerm} />
                 </div>
             </div>
