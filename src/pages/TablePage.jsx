@@ -33,14 +33,24 @@ const TablePage = () => {
                     <h1 className="page-title">Customers</h1>
                 </div>
             </div>
-            <div className="row table-container justify-content-center">
-                <div className="col-md-10">
+            <div className="row mt-2">
+                <div className="col-sm-6 col-sm-4 col-md-4 offset-sm-3 col-xs-3 offset-md-4 mb-2">
+                    <SearchBar onSearch={setSearchTerm} />
+                </div>
+            </div>
+            <div className="row mt-3">
+                <div className="col-md-8  offset-md-2 offset-sm-2 col-sm-10  ">
                     <TableWithPagination customers={customers} searchTerm={searchTerm} />
                 </div>
             </div>
             <HorizontalAccordion closedTitle={'Add Customer'} openedTitle={"Cancel"}>
-                I am a Child
-            </HorizontalAccordion> 
+                {(toggleForm) => (
+                    <AddCustomerForm
+                        onClose={toggleForm}
+                        plans={plans}
+                        onAddCustomer={handleAddCustomer}
+                    />)}
+            </HorizontalAccordion>
         </div>
 
     )

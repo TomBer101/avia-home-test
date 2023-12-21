@@ -22,3 +22,13 @@ span {
     display: flex;
     justify-content: space-between;
 }
+
+th {
+    width: 100px; /* Set your desired fixed width for each column */
+  }
+
+@media (max-width: 576px) {
+    input.form-control {
+      font-size: 14px;
+    }
+  }
