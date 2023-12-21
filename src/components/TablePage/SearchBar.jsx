@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import '../../styles/components/SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -27,8 +28,9 @@ const SearchBar = ({ onSearch }) => {
     } 
 
     return (
-        <div className="input-group input-group-sm mb-2 justify-content-center">
-            
+        <div className="container">
+            <div className="input-group  ">
+
                 <input
                     className="form-control form-control-sm"
                     type="text"
@@ -36,11 +38,13 @@ const SearchBar = ({ onSearch }) => {
                     value={searchTerm}
                     onChange={handleChange}
                 />
-            
-            <div className="input-group-prepend">
-                <button class="btn btn-sm btn-outline-secondary" onClick={handleSearch}>Search</button>
+
+                <div className="input-group-prepend">
+                    <button className="btn btn-sm btn-outline-secondary search-button" onClick={handleSearch}>Search</button>
+                </div>
             </div>
         </div>
+
         
     );
 };

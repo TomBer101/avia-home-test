@@ -22,3 +22,13 @@ span {
     display: flex;
     justify-content: space-between;
 }
+
+th {
+    width: 100px; 
+  }
+
+@media (max-width: 576px) {
+    input.form-control {
+      font-size: 14px;
+    }
+  }

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faEnvelope, faPhone, faBriefcase} from '@fortawesome/free-solid-svg-icons'
+import { faUser, faEnvelope, faPhone, faBriefcase } from '@fortawesome/free-solid-svg-icons'
 
 
-// TODO: fix icons
 
 const AddCustomerForm = ({ onAddCustomer, plans, onClose }) => {
     const [newCustomer, setNewCustomer] = useState({
@@ -13,23 +12,23 @@ const AddCustomerForm = ({ onAddCustomer, plans, onClose }) => {
         email: "",
         plan: "",
     });
-   
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // TODO: validatetionogic ?
 
         onAddCustomer(newCustomer);
-
+        onClose();
         setNewCustomer({
-            firstName: "",
-            lastName: "",
+            firstname: "",
+            lastname: "",
             phone: "",
             email: "",
             plan: "",
         });
 
-        onClose();
+        
+        alert("Client added successfully :)");
     };
 
     const handleChange = (event) => {
@@ -46,43 +45,71 @@ const AddCustomerForm = ({ onAddCustomer, plans, onClose }) => {
     return (
 
         <div className="container" >
-        <div className="card bg-light">
-          <div className="card-body mx-auto" style={{ maxWidth: '400px' }}>
-            <h4 className="card-title mt-3 text-center">Register</h4>
-            <form onSubmit={handleSubmit}>
-                        <div className="form-group input-group">
+            <div className="card bg-light">
+                <div className="card-body mx-auto" style={{ maxWidth: '400px' }}>
+                    <h4 className="card-title mt-3 text-center">Register</h4>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group mb-3 input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text"> <FontAwesomeIcon icon={faUser} /> </span>
                             </div>
-                            <input onChange={handleChange} name="firstName" className="form-control" placeholder="First name" type="text" value={newCustomer.firstname} />
+                            <input
+                                onChange={handleChange}
+                                name="firstname"
+                                className="form-control"
+                                placeholder="First name"
+                                type="text"
+                                value={newCustomer.firstname}
+                                required
+                            />
                         </div>
 
-                        <div className="form-group input-group">
+                        <div className="form-group mb-3 input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text"> <FontAwesomeIcon icon={faUser} /> </span>
                             </div>
-                            <input onChange={handleChange} name="lastName" className="form-control" placeholder="Last name" type="text" value={newCustomer.lastname} />
+                            <input
+                                onChange={handleChange}
+                                name="lastname"
+                                className="form-control"
+                                placeholder="Last name"
+                                type="text"
+                                value={newCustomer.lastname} 
+                                required
+                            />
                         </div>
 
-                        <div className="form-group input-group">
+                        <div className="form-group mb-3 input-group">
                             <div className="input-group-prepend">
-                                <span className="input-group-text"> <FontAwesomeIcon icon={faEnvelope}/> </span>
+                                <span className="input-group-text"> <FontAwesomeIcon icon={faEnvelope} /> </span>
                             </div>
-                            <input onChange={handleChange} name="email" className="form-control" placeholder="Email address" type="email" value={newCustomer.email} />
+                            <input
+                                onChange={handleChange}
+                                name="email"
+                                className="form-control"
+                                placeholder="Email address"
+                                type="email"
+                                value={newCustomer.email} required />
                         </div>
-                        <div className="form-group input-group">
+                        <div className="form-group mb-3 input-group">
                             <div className="input-group-prepend">
-                                <span className="input-group-text"> <FontAwesomeIcon icon={faPhone}/> </span>
+                                <span className="input-group-text"> <FontAwesomeIcon icon={faPhone} /> </span>
                             </div>
-                            <input onChange={handleChange} name="phone" className="form-control" placeholder="Phone number" type="phone" value={newCustomer.phone} />
+                            <input
+                                onChange={handleChange}
+                                name="phone"
+                                className="form-control"
+                                placeholder="Phone number"
+                                type="phone"
+                                value={newCustomer.phone} required />
                         </div>
 
-                        <div className="form-group input-group">
+                        <div className="form-group mb-3 input-group">
                             <div className="input-group-prepend">
                                 <span className="input-group-text"> <FontAwesomeIcon icon={faBriefcase} /></span>
                             </div>
-                            <select className="form-control" id='plan' name='plan' value={newCustomer.plan} onChange={handleChange}>
-                                <option disabled  value=""> Select a plan</option> 
+                            <select className="form-control" id='plan' name='plan' value={newCustomer.plan} onChange={handleChange} required>
+                                <option disabled value=""> Select a plan</option>
                                 {plans.map(plan => {
                                     return (
                                         <option key={plan} value={plan}>{plan}</option>

@@ -5,28 +5,50 @@
   width: 108px;
   top: 0;
   left: 0;
-  background-color: #313866; /* Set your desired background color */
+  background-color: #1a2573; 
   overflow-x: hidden;
-  color: #fff; /* Set your desired text color */
-  transition: width 0.5s ease; /* Add a smooth transition effect */
+  color: #fff;
+  transition: width 0.5s ease; 
   z-index: 50;
   padding-top: 25px;
   flex-direction: column;
   box-shadow: 5px -5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
+
+
 .menu-item {
   padding: 2px;
+  margin-right: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
   font-size: 20px;
   color: #e7dddd81;
   display: block;
   width: inherit;
-  transition: width 0.1s ease;
+  transition: width 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 2vh 4vh 2vh 2vh;
 }
 
 .menu-item:hover {
   color:#f1f1f1 ;
 }
+
+#sidebar-title {
+  background-color: #434359;
+    width: 45%;
+    align-self: center;
+    height: 50%;
+    border-radius: 5%;
+    box-shadow: 5px -5px 10px 0px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+}
+
+.btn-cancel {align-self: center;
+margin-bottom: 1rem;
+padding: 3% 8%;}
 
 .sidebar:target {
   opacity: 1;
@@ -42,7 +64,16 @@
 }
   
 .sidebar.expanded {
-  width: 300px; /* Set the expanded width */
+  width: 320px; 
   z-index: 50;
+}
+
+.content *{
+  
+  transition: opacity 0.5s ease;
+}
+
+.content {
+  transition: opacity 0.5s ease; 
 }
   

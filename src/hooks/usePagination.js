@@ -1,43 +1,24 @@
-// export const usePagination = ({
-//     totalPages,
-//     pageSize,
-//     siblingCount,
-//     currentPage,
-//     totalPageCount
-//   }) => {
-//     const paginationRange = useMemo(() => {
-      
-  
-//       // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-//       const totalPageNumbers = siblingCount + 3;
-  
-//       /*
-//         Case 1:
-//         If the number of pages is less than the page numbers we want to show in our
-//         paginationComponent, we return the range [1..totalPageCount]
-//       */
-//       if (totalPageNumbers >= totalPageCount) {
-//         return range(1, totalPageCount);
-//       }
-      
-//       /*
-//           Calculate left and right sibling index and make sure they are within range 1 and totalPageCount
-//       */
-//       const leftSiblingIndex = Math.max(currentPage - siblingCount, 1);
-//       const rightSiblingIndex = Math.min(
-//         currentPage + siblingCount,
-//         totalPageCount
-//       );
-  
-//       /*
-//         We do not show dots just when there is just one page number to be inserted between the extremes of sibling and the page limits i.e 1 and totalPageCount. Hence we are using leftSiblingIndex > 2 and rightSiblingIndex < totalPageCount - 2
-//       */
+import { useMemo } from 'react';
 
-     
-//         let middleRange = range(leftSiblingIndex, rightSiblingIndex);
-//         return [ ...middleRange];
-      
-//     }, [totalCount, pageSize, siblingCount, currentPage]);
-  
-//     return paginationRange;
-//   };
+const usePagination = ({ currentPage, lastPage, totalButtons }) => {
+  const calculateVisiblePages = () => {
+    let startPage, endPage;
+
+    if (lastPage <= totalButtons) {
+      startPage = 1;
+      endPage = lastPage;
+    } else {
+      const leftSiblingIndex = Math.max(currentPage - Math.floor(totalButtons / 2), 1);
+      const rightSiblingIndex = Math.min(currentPage + Math.floor(totalButtons / 2), lastPage);
+
+      startPage = Math.max(rightSiblingIndex - totalButtons + 1, 1);
+      endPage = Math.min(startPage + totalButtons - 1, lastPage);
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
+  };
+
+  return useMemo(() => calculateVisiblePages(), [currentPage, lastPage, totalButtons]);
+};
+
+export default usePagination;
