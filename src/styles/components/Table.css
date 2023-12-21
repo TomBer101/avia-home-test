@@ -1,6 +1,34 @@
 .table-container {
-    width: 85%;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    align-self: baseline;
+}
+
+span {
+    margin-right: 8px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+th {
+    width: 100px; 
+  }
+
+@media (max-width: 576px) {
+    input.form-control {
+      font-size: 14px;
+    }
+  }
